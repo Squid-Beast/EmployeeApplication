@@ -1,11 +1,41 @@
 package com.example.employee_application.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.employee_application.entity.Employee;
+import com.example.employee_application.pojo.EmployeeDetails;
+import com.example.employee_application.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
-    
-    public String homepage() {
-        return "Welcome to the Employee Management System!";
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+	public List<EmployeeDetails> findAllEmployees() {
+        List<Employee> employees = employeeRepository.findAll();
+        return employees.stream().map(employee -> {
+            EmployeeDetails employeeDetails = new EmployeeDetails();
+            employeeDetails.setFirstName(employee.getFirstName());
+            employeeDetails.setLastName(employee.getLastName());
+            employeeDetails.setJoiningDate(employee.getJoiningDate());
+            employeeDetails.setRole(employee.getRole());
+            return employeeDetails;
+        }).toList();
+        
+	}
+
+    public EmployeeDetails addEmployee(EmployeeDetails employeeDetails) {
+        Employee employee = new Employee();
+        employee.setFirstName(employeeDetails.getFirstName());
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setJoiningDate(employeeDetails.getJoiningDate());
+        employee.setRole(employeeDetails.getRole());
+        employeeRepository.save(employee);
+        return employeeDetails;
     }
+
 }
