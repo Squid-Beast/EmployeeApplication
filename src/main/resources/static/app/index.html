@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="services/employeeService.js"></script>
+</head>
+<body ng-app="employeeApp" ng-controller="MainController">
+    <h1>Employee Application</h1>
+    <div>
+        <p>Welcome to the Employee Management System!</p>
+        <p>{{ message }}</p>
+    </div>
+    <div>
+        <form ng-submit="submitForm()">
+            <label for="name">Enter your name:</label>
+            <input type="text" id="name" ng-model="name" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p>{{ greeting }}</p>
+    </div>
+</body>
+</html>
