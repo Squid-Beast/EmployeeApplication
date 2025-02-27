@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.employee_application.entity.Employee;
 import com.example.employee_application.pojo.EmployeeDetails;
 import com.example.employee_application.pojo.SuccessResponse;
 import com.example.employee_application.service.EmployeeService;
