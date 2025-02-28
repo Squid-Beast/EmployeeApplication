@@ -1,9 +1,17 @@
-app.service('EmployeeService', function($http) {
-    this.getHomePage = function() {
-        return $http.get('/api/home');
+// services/employeeService.js
+app.factory('EmployeeService', ['$http', function($http) {
+    return {
+        // Fetches the home page message from /home endpoint
+        getHomePage: function() {
+            return $http.get('/home');
+        },
+        // Adds an employee by sending a POST request to /addEmployee
+        addEmployee: function(employee) {
+            return $http.post('/addEmployee', employee);
+        },
+        // Optional: fetch all employees
+        getAllEmployees: function() {
+            return $http.get('/employees');
+        }
     };
-
-    this.getGreeting = function(name) {
-        return $http.get('/api/greet', { params: { name: name } });
-    };
-});
+}]);

@@ -19,6 +19,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/employees")
     public ResponseEntity<List<EmployeeDetails>> getAllEmployees() {
         try {
