@@ -1,0 +1,25 @@
+<!-- employeeForm.html -->
+<div>
+    <h1>Employee Application</h1>
+    <form ng-submit="submitForm()">
+      <div class="form-group">
+        <label for="firstName">Enter your first name:</label>
+        <input type="text" id="firstName" ng-model="employee.firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Enter your last name:</label>
+        <input type="text" id="lastName" ng-model="employee.lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Enter assigned role:</label>
+        <input type="text" id="role" ng-model="employee.role" required>
+      </div>
+      <div class="form-group">
+        <label for="joinDate">Enter joining date:</label>
+        <input type="text" id="joinDate" ng-model="employee.joiningDate" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <p class="message">{{ responseMessage }}</p>
+  </div>
+  

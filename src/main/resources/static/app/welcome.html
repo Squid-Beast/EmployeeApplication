@@ -1,0 +1,13 @@
+<!-- welcome.html -->
+<div>
+    <h1>Welcome, {{ employee.firstName }}!</h1>
+    <p>Here are your submitted details:</p>
+    <ul>
+      <li><strong>First Name:</strong> {{ employee.firstName }}</li>
+      <li><strong>Last Name:</strong> {{ employee.lastName }}</li>
+      <li><strong>Role:</strong> {{ employee.role }}</li>
+      <li><strong>Joining Date:</strong> {{ employee.joiningDate }}</li>
+    </ul>
+    <p ng-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  </div>
+  
