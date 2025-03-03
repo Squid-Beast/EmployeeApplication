@@ -1,13 +1,90 @@
 <!-- welcome.html -->
-<div>
-    <h1>Welcome, {{ employee.firstName }}!</h1>
-    <p>Here are your submitted details:</p>
-    <ul>
-      <li><strong>First Name:</strong> {{ employee.firstName }}</li>
-      <li><strong>Last Name:</strong> {{ employee.lastName }}</li>
-      <li><strong>Role:</strong> {{ employee.role }}</li>
-      <li><strong>Joining Date:</strong> {{ employee.joiningDate }}</li>
-    </ul>
-    <p ng-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+<style>
+    .dashboard {
+      padding: 20px;
+    }
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .dashboard-header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #333;
+    }
+    .dashboard-header p {
+      margin: 0;
+      font-size: 1.2em;
+      color: #777;
+    }
+    .dashboard-content {
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .card h2 {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      color: #fb6d9d;
+    }
+    .details-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .details-list li {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+      color: #555;
+    }
+    .detail-label {
+      font-weight: bold;
+      color: #333;
+    }
+    .back-home-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #fb6d9d;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .back-button:hover {
+      background: #e2628d;
+    }
+  </style>
+  
+  <div class="dashboard">
+    <header class="dashboard-header">
+      <h1>Welcome, {{ employee.firstName }}!</h1>
+      <p>Employee Dashboard</p>
+    </header>
+    <div class="dashboard-content">
+      <div class="card">
+        <h2>Employee Details</h2>
+        <ul class="details-list">
+          <li><span class="detail-label">First Name:</span> {{ employee.firstName }}</li>
+          <li><span class="detail-label">Last Name:</span> {{ employee.lastName }}</li>
+          <li><span class="detail-label">Role:</span> {{ employee.role }}</li>
+          <li><span class="detail-label">Joining Date:</span> {{ employee.joiningDate }}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Optional back button to return to form or home -->
+    <div style="text-align: center;">
+      <a href="#!/" class="back-home-button">Back to Homepage</a>
+    </div>
   </div>
   
