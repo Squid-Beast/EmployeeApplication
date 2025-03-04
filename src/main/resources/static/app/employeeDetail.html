@@ -1,0 +1,48 @@
+<!-- employeeDetail.html -->
+<style>
+    .detail-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .detail-card h2 {
+      margin-top: 0;
+      color: #fb6d9d;
+    }
+    .detail-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .detail-card li {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #fb6d9d;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .back-button:hover {
+      background: #e2628d;
+    }
+  </style>
+  
+  <div class="detail-card">
+    <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
+    <ul>
+      <li><strong>Role:</strong> {{ employee.role }}</li>
+      <li><strong>Joining Date:</strong> {{ employee.joiningDate }}</li>
+    </ul>
+    <a href="#!/search" class="back-button">Back to Search</a>
+  </div>
+  
