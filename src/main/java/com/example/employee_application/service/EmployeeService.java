@@ -44,4 +44,18 @@ public class EmployeeService {
                 .map(emp -> new EmployeeDetails(emp.getFirstName(), emp.getLastName(), emp.getJoiningDate(), emp.getRole()))
                 .collect(Collectors.toList());
     }
+
+    public EmployeeDetails updateEmployee(EmployeeDetails employeeDetails) {
+        Employee employee = employeeRepository.findByFirstName(employeeDetails.getFirstName()).get(0);
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setJoiningDate(employeeDetails.getJoiningDate());
+        employee.setRole(employeeDetails.getRole());
+        employeeRepository.save(employee);
+        return employeeDetails;
+    }
+
+    public void deleteEmployee(String firstName) {
+        Employee employee = employeeRepository.findByFirstName(firstName).get(0);
+        employeeRepository.delete(employee);
+    }
 }

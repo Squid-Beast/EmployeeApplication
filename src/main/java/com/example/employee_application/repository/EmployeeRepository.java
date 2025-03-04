@@ -11,4 +11,6 @@ import com.example.employee_application.entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     List<Employee> findByFirstName(String firstName);
+
+    Employee deletEmployee(String firstName);
 }
