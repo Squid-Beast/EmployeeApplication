@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.employee_application.pojo.EmployeeDetails;
@@ -38,6 +40,16 @@ public class EmployeeController {
     public ResponseEntity<?> addEmployee(@RequestBody EmployeeDetails employeeDetails) {
         employeeService.addEmployee(employeeDetails);
         return ResponseEntity.ok(new SuccessResponse("Employee added successfully!"));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<EmployeeDetails>> getEmployeesByFirstName(@RequestParam(name = "firstName") String firstName) {
+        try {
+            List<EmployeeDetails> employeeDetails = employeeService.getEmployeesByFirstName(firstName);
+            return ResponseEntity.ok(employeeDetails);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.employee_application.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,6 @@ public class EmployeeService {
             employeeDetails.setRole(employee.getRole());
             return employeeDetails;
         }).toList();
-        
 	}
 
     public EmployeeDetails addEmployee(EmployeeDetails employeeDetails) {
@@ -38,4 +38,10 @@ public class EmployeeService {
         return employeeDetails;
     }
 
+    public List<EmployeeDetails> getEmployeesByFirstName(String firstName) {
+        return employeeRepository.findByFirstName(firstName)
+                .stream()
+                .map(emp -> new EmployeeDetails(emp.getFirstName(), emp.getLastName(), emp.getJoiningDate(), emp.getRole()))
+                .collect(Collectors.toList());
+    }
 }
