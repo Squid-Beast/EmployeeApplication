@@ -1,7 +1,91 @@
 <!-- home.html -->
-<div>
-    <h1>Welcome to Employee Application</h1>
-    <p>This application allows you to manage employee data with ease.</p>
-    <button ng-click="goToAddEmployee()">Add Employee</button>
+<style>
+    /* Home Page Styles */
+    .home-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .home-header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #333;
+    }
+    .home-header p {
+      margin: 0;
+      font-size: 1.2em;
+      color: #777;
+    }
+    .add-button {
+      display: block;
+      width: 100%;
+      background: #fb6d9d;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      margin: 20px 0;
+    }
+    .add-button:hover {
+      background: #e2628d;
+    }
+    /* Search Card Styles */
+    .search-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .search-card h2 {
+      margin-bottom: 15px;
+      color: #fb6d9d;
+    }
+    .search-card input {
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+    .employee-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .employee-list li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    .employee-list li:hover {
+      background: #f0f0f0;
+    }
+  </style>
+  
+  <div>
+    <div class="home-header">
+      <h1>Employee Application</h1>
+      <p>Manage your employees easily</p>
+    </div>
+  
+    <!-- Button to navigate to the Add Employee form -->
+    <a href="#!/addEmployee" class="add-button">Add Employee</a>
+  
+    <!-- Search Card: Controlled by SearchController -->
+    <div class="search-card" ng-controller="SearchController">
+      <h2>Search Employees</h2>
+      <input type="text" ng-model="searchQuery" placeholder="Search by name or role">
+      <ul class="employee-list">
+        <li ng-repeat="employee in employees | filter:searchQuery" ng-click="selectEmployee(employee)">
+          <strong>{{ employee.firstName }} {{ employee.lastName }}</strong> - {{ employee.role }}
+        </li>
+      </ul>
+    </div>
   </div>
   

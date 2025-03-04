@@ -15,6 +15,14 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'welcome.html',
       controller: 'WelcomeController'
     })
+    .when('/search', {
+      templateUrl: 'search.html',
+      controller: 'SearchController'
+    })
+    .when('/employeeDetail', {
+      templateUrl: 'employeeDetail.html',
+      controller: 'EmployeeDetailController'
+    })
     .otherwise({
       redirectTo: '/'
     });
