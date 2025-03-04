@@ -6,7 +6,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       max-width: 500px;
-      margin: 0 auto;
+      margin: 20px auto;
     }
     .detail-card h2 {
       margin-top: 0;
@@ -28,21 +28,26 @@
       color: #fff;
       border: none;
       border-radius: 4px;
-      cursor: pointer;
       text-decoration: none;
-      transition: background 0.3s ease;
+      cursor: pointer;
     }
     .back-button:hover {
       background: #e2628d;
     }
   </style>
   
-  <div class="detail-card">
+  <div class="detail-card" ng-if="employee.firstName">
     <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
     <ul>
       <li><strong>Role:</strong> {{ employee.role }}</li>
       <li><strong>Joining Date:</strong> {{ employee.joiningDate }}</li>
     </ul>
-    <a href="#!/search" class="back-button">Back to Search</a>
+    <!-- Updated back button to go to the home page -->
+    <a href="#!/" class="back-button">Back to Home</a>
+  </div>
+  
+  <div ng-if="errorMessage" style="text-align: center; color: red;">
+    <p>{{ errorMessage }}</p>
+    <a href="#!/" class="back-button">Back to Home</a>
   </div>
   
