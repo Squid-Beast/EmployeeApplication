@@ -1,6 +1,6 @@
-<!-- home.html -->
+<!-- home.html (Search Card Section) -->
 <style>
-    /* Home Page Styles */
+    /* Home Page Styles (unchanged) */
     .home-header {
       text-align: center;
       margin-bottom: 20px;
@@ -33,25 +33,39 @@
     .add-button:hover {
       background: #e2628d;
     }
-    /* Search Card Styles */
+    /* Updated Search Card Styles */
     .search-card {
+      position: relative; /* Allows absolute positioning for dropdown */
       background: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 20px;
+      height: 120px; /* Fixed height for the card */
     }
     .search-card h2 {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       color: #fb6d9d;
     }
-    .search-card input {
+    .search-input-container input {
       padding: 10px;
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
-      margin-bottom: 15px;
+    }
+    /* Updated dropdown: positioned lower so it does not cover the search bar */
+    .dropdown {
+      position: absolute;
+      top: 120px; /* Increased from 70px to 90px so the search bar remains visible */
+      left: 20px;
+      right: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 10;
     }
     .employee-list {
       list-style: none;
@@ -80,12 +94,17 @@
     <!-- Search Card: Controlled by SearchController -->
     <div class="search-card" ng-controller="SearchController">
       <h2>Search Employees</h2>
-      <input type="text" ng-model="searchQuery" placeholder="Search by name or role">
-      <ul class="employee-list">
-        <li ng-repeat="employee in employees | filter:searchQuery" ng-click="selectEmployee(employee)">
-          <strong>{{ employee.firstName }} {{ employee.lastName }}</strong> - {{ employee.role }}
-        </li>
-      </ul>
+      <div class="search-input-container">
+        <input type="text" ng-model="searchQuery" placeholder="Search by name or role">
+      </div>
+      <!-- Dropdown list appears absolutely and doesn't change the card height -->
+      <div class="dropdown" ng-if="searchQuery && (employees | filter:searchQuery).length > 0">
+        <ul class="employee-list">
+          <li ng-repeat="employee in employees | filter:searchQuery" ng-click="selectEmployee(employee)">
+            <strong>{{ employee.firstName }} {{ employee.lastName }}</strong> - {{ employee.role }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   
