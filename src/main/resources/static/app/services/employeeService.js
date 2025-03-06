@@ -12,6 +12,12 @@ app.factory('EmployeeService', ['$http', function($http) {
         },
         getEmployeesByFirstName: function(firstName) {
             return $http.get('/search?firstName=' + firstName);
+        },
+        updateEmployee: function(firstName, employee) {
+            return $http.put('/update?firstName=' + firstName, employee);
+        },
+        deleteEmployee: function(firstName) {
+            return $http.delete('/delete?firstName=' + firstName);
         }
     };
 }]);

@@ -1,6 +1,69 @@
 <!-- employeeForm.html -->
-<div>
-    <h1>Employee Application</h1>
+<!DOCTYPE html>
+<html lang="en" ng-controller="MainController">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Employee</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .submit-button {
+      display: block;
+      width: 100%;
+      background: #fb6d9d;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 20px;
+    }
+    .submit-button:hover {
+      background: #e2628d;
+    }
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Add Employee</h1>
     <form ng-submit="submitForm()">
       <div class="form-group">
         <label for="firstName">Enter your first name:</label>
@@ -15,11 +78,12 @@
         <input type="text" id="role" ng-model="employee.role" required>
       </div>
       <div class="form-group">
-        <label for="joinDate">Enter joining date:</label>
-        <input type="text" id="joinDate" ng-model="employee.joiningDate" required>
+        <label for="joiningDate">Enter joining date:</label>
+        <input type="text" id="joiningDate" ng-model="employee.joiningDate" required>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" class="submit-button">Submit</button>
     </form>
     <p class="message">{{ responseMessage }}</p>
   </div>
-  
+</body>
+</html>

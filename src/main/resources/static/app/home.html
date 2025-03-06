@@ -1,6 +1,54 @@
 <!-- home.html -->
 <style>
-    /* Main Container Styles */
+    /* Overall Layout */
+    .layout {
+      position: relative;
+    }
+    /* Hamburger Icon Styles */
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 36px;
+      color: #333;
+      cursor: pointer;
+      z-index: 1100;
+    }
+    /* Side Menu Styles */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1050;
+    }
+    .side-menu.open {
+      transform: translateX(0);
+    }
+    .side-menu a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #444;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .side-menu a:hover {
+      background: #555;
+    }
+    /* Main Content Area */
+    .main-content {
+      padding: 20px;
+      margin-top: 60px; /* Space for header */
+    }
     .home-header {
       text-align: center;
       margin-bottom: 20px;
@@ -35,13 +83,13 @@
     }
     /* Search Card Styles */
     .search-card {
-      position: relative; /* Enables absolute positioning of the dropdown */
+      position: relative;
       background: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 20px;
-      height: 120px; /* Fixed height so it doesn’t expand */
+      height: 120px; /* Fixed height */
     }
     .search-card h2 {
       margin-bottom: 10px;
@@ -56,7 +104,7 @@
     }
     .dropdown {
       position: absolute;
-      top: 120px; /* Positioned below the fixed content of the search card */
+      top: 120px; /* Positioned below the search card */
       left: 20px;
       right: 20px;
       background: #fff;
@@ -79,80 +127,99 @@
     .employee-list li:hover {
       background: #f0f0f0;
     }
-    /* Fixed Employee Detail Popup (separate from main container) */
-    .employee-detail-popup {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+    /* Employee Detail Card */
+    .detail-card {
       background: #fff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      max-width: 500px;
-      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
     }
-    .employee-detail-popup h2 {
+    .detail-card h2 {
       margin-top: 0;
       color: #fb6d9d;
     }
-    .employee-detail-popup ul {
+    .detail-card ul {
       list-style: none;
       padding: 0;
     }
-    .employee-detail-popup li {
+    .detail-card li {
       margin-bottom: 10px;
       font-size: 1.1em;
     }
-    .close-button {
-      display: inline-block;
+    .detail-buttons {
       margin-top: 10px;
+    }
+    .detail-buttons button {
       padding: 10px 20px;
-      background: #fb6d9d;
-      color: #fff;
+      margin-right: 10px;
       border: none;
       border-radius: 4px;
-      text-decoration: none;
       cursor: pointer;
+      color: #fff;
     }
-    .close-button:hover {
-      background: #e2628d;
+    .edit-button {
+      background: #007bff;
+    }
+    .edit-button:hover {
+      background: #0056b3;
+    }
+    .delete-button {
+      background: #dc3545;
+    }
+    .delete-button:hover {
+      background: #c82333;
     }
   </style>
   
-  <div ng-controller="HomeController">
-    <div class="home-header">
-      <h1>Employee Application</h1>
-      <p>Manage your employees easily</p>
+  <div class="layout" ng-controller="HomeController">
+    <!-- Hamburger Icon -->
+    <div class="hamburger" ng-click="toggleMenu()">
+      <i class="material-icons">menu</i>
     </div>
   
-    <!-- Button to navigate to the Add Employee form -->
-    <a href="#!/addEmployee" class="add-button">Add Employee</a>
+    <!-- Side Menu (pop-out) -->
+    <div class="side-menu" ng-class="{'open': isMenuOpen}">
+      <a href="#!/addEmployee">Add Employee</a>
+      <a href="" ng-click="editEmployee()">Edit Employee</a>
+      <a href="" ng-click="deleteEmployee()">Delete Employee</a>
+    </div>
   
-    <!-- Search Card: Controlled by SearchController -->
-    <div class="search-card" ng-controller="SearchController">
-      <h2>Search Employees</h2>
-      <div class="search-input-container">
-        <input type="text" ng-model="searchQuery" placeholder="Search by name or role">
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <div class="home-header">
+        <h1>Employee Application</h1>
+        <p>Manage your employees easily</p>
       </div>
-      <!-- Dropdown list appears absolutely and doesn't change the card height -->
-      <div class="dropdown" ng-if="searchQuery && (employees | filter:searchQuery).length > 0">
-        <ul class="employee-list">
-          <li ng-repeat="employee in employees | filter:searchQuery" ng-click="selectEmployee(employee)">
-            <strong>{{ employee.firstName }} {{ employee.lastName }}</strong> - {{ employee.role }}
-          </li>
+  
+      <!-- Search Card (controlled by SearchController) -->
+      <div class="search-card" ng-controller="SearchController">
+        <h2>Search Employees</h2>
+        <div class="search-input-container">
+          <input type="text" ng-model="searchQuery" placeholder="Search by name or role">
+        </div>
+        <!-- Dropdown list (absolute) -->
+        <div class="dropdown" ng-if="searchQuery && (employees | filter:searchQuery).length > 0">
+          <ul class="employee-list">
+            <li ng-repeat="employee in employees | filter:searchQuery" ng-click="selectEmployee(employee)">
+              <strong>{{ employee.firstName }} {{ employee.lastName }}</strong> - {{ employee.role }}
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Employee Detail Card (if an employee is selected) -->
+      <div class="detail-card" ng-if="selectedEmployee">
+        <h2>{{ selectedEmployee.firstName }} {{ selectedEmployee.lastName }}</h2>
+        <ul>
+          <li><strong>Role:</strong> {{ selectedEmployee.role }}</li>
+          <li><strong>Joining Date:</strong> {{ selectedEmployee.joiningDate }}</li>
         </ul>
+        <div class="detail-buttons">
+          <button class="edit-button" ng-click="editEmployee()">Edit</button>
+          <button class="delete-button" ng-click="deleteEmployee()">Delete</button>
+        </div>
       </div>
     </div>
-  </div>
-  
-  <!-- Employee Detail Popup: Displayed separately, outside the main container -->
-  <div class="employee-detail-popup" ng-if="selectedEmployee" ng-controller="HomeController">
-    <h2>{{ selectedEmployee.firstName }} {{ selectedEmployee.lastName }}</h2>
-    <ul>
-      <li><strong>Role:</strong> {{ selectedEmployee.role }}</li>
-      <li><strong>Joining Date:</strong> {{ selectedEmployee.joiningDate }}</li>
-    </ul>
-    <button class="close-button" ng-click="closeEmployeeDetail()">Close</button>
   </div>
   

@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Employee Application</title>
-  <!-- AngularJS Library and ngRoute -->
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- AngularJS and ngRoute -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
   <!-- Application Scripts (order is important) -->
@@ -13,71 +15,12 @@
   <script src="controllers/mainController.js"></script>
   <script src="controllers/welcomeController.js"></script>
   <script src="controllers/searchController.js"></script>
-  <script src="controllers/employeeDetailController.js"></script>
+  <script src="controllers/editEmployeeController.js"></script>
   <script src="services/employeeService.js"></script>
-  
-
-  <!-- Custom Styles -->
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f2f5;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 500px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    button {
-      display: block;
-      width: 100%;
-      background: #fb6d9d;
-      color: white;
-      border: none;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      margin-bottom: 10px;
-    }
-    button:hover {
-      background: #e2628d;
-    }
-    .message {
-      text-align: center;
-      margin-top: 15px;
-      color: green;
-    }
-  </style>
+  <!-- Custom styles can be inline or linked -->
 </head>
 <body>
   <div class="container">
-    <!-- AngularJS will inject the appropriate view here -->
     <div ng-view></div>
   </div>
 </body>

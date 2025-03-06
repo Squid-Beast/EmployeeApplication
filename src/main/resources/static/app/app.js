@@ -11,17 +11,9 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'employeeForm.html',
       controller: 'MainController'
     })
-    .when('/welcome', {
-      templateUrl: 'welcome.html',
-      controller: 'WelcomeController'
-    })
-    .when('/search', {
-      templateUrl: 'search.html',
-      controller: 'SearchController'
-    })
-    .when('/employeeDetail', {
-      templateUrl: 'employeeDetail.html',
-      controller: 'EmployeeDetailController'
+    .when('/editEmployee', {
+      templateUrl: 'editEmployee.html',
+      controller: 'EditEmployeeController'
     })
     .otherwise({
       redirectTo: '/'
