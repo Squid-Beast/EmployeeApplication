@@ -1,0 +1,74 @@
+<!-- editEmployee.html -->
+<style>
+    .edit-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .edit-container h2 {
+        text-align: center;
+        color: #007bff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .submit-button {
+        display: block;
+        width: 100%;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background: #0056b3;
+    }
+</style>
+
+<div class="edit-container" ng-controller="EditEmployeeController">
+    <h2>Edit Employee</h2>
+    <form ng-submit="updateEmployee()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" ng-model="employee.firstName" disabled>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" ng-model="employee.lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <input type="text" id="role" ng-model="employee.role" required>
+        </div>
+        <div class="form-group">
+            <label for="joiningDate">Joining Date</label>
+            <input type="text" id="joiningDate" ng-model="employee.joiningDate" required>
+        </div>
+        <button type="submit" class="submit-button">Update Employee</button>
+    </form>
+</div>
