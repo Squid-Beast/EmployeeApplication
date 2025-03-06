@@ -1,6 +1,6 @@
-<!-- home.html (Search Card Section) -->
+<!-- home.html -->
 <style>
-    /* Home Page Styles (unchanged) */
+    /* Main Container Styles */
     .home-header {
       text-align: center;
       margin-bottom: 20px;
@@ -33,15 +33,15 @@
     .add-button:hover {
       background: #e2628d;
     }
-    /* Updated Search Card Styles */
+    /* Search Card Styles */
     .search-card {
-      position: relative; /* Allows absolute positioning for dropdown */
+      position: relative; /* Enables absolute positioning of the dropdown */
       background: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 20px;
-      height: 120px; /* Fixed height for the card */
+      height: 120px; /* Fixed height so it doesn’t expand */
     }
     .search-card h2 {
       margin-bottom: 10px;
@@ -54,10 +54,9 @@
       border-radius: 4px;
       box-sizing: border-box;
     }
-    /* Updated dropdown: positioned lower so it does not cover the search bar */
     .dropdown {
       position: absolute;
-      top: 120px; /* Increased from 70px to 90px so the search bar remains visible */
+      top: 120px; /* Positioned below the fixed content of the search card */
       left: 20px;
       right: 20px;
       background: #fff;
@@ -80,9 +79,48 @@
     .employee-list li:hover {
       background: #f0f0f0;
     }
+    /* Fixed Employee Detail Popup (separate from main container) */
+    .employee-detail-popup {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      max-width: 500px;
+      z-index: 1000;
+    }
+    .employee-detail-popup h2 {
+      margin-top: 0;
+      color: #fb6d9d;
+    }
+    .employee-detail-popup ul {
+      list-style: none;
+      padding: 0;
+    }
+    .employee-detail-popup li {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+    .close-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #fb6d9d;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .close-button:hover {
+      background: #e2628d;
+    }
   </style>
   
-  <div>
+  <div ng-controller="HomeController">
     <div class="home-header">
       <h1>Employee Application</h1>
       <p>Manage your employees easily</p>
@@ -106,5 +144,15 @@
         </ul>
       </div>
     </div>
+  </div>
+  
+  <!-- Employee Detail Popup: Displayed separately, outside the main container -->
+  <div class="employee-detail-popup" ng-if="selectedEmployee" ng-controller="HomeController">
+    <h2>{{ selectedEmployee.firstName }} {{ selectedEmployee.lastName }}</h2>
+    <ul>
+      <li><strong>Role:</strong> {{ selectedEmployee.role }}</li>
+      <li><strong>Joining Date:</strong> {{ selectedEmployee.joiningDate }}</li>
+    </ul>
+    <button class="close-button" ng-click="closeEmployeeDetail()">Close</button>
   </div>
   

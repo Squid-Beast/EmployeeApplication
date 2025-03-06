@@ -1,6 +1,6 @@
 // controllers/searchController.js
-angular.module('employeeApp').controller('SearchController', ['$scope', '$location', '$rootScope', 'EmployeeService', 
-    function($scope, $location, $rootScope, EmployeeService) {
+angular.module('employeeApp').controller('SearchController', ['$scope', '$rootScope', 'EmployeeService', 
+    function($scope, $rootScope, EmployeeService) {
       $scope.searchQuery = "";
       $scope.employees = [];
       
@@ -11,10 +11,9 @@ angular.module('employeeApp').controller('SearchController', ['$scope', '$locati
         console.error("Error fetching employees", error);
       });
       
-      // When an employee is clicked, store the employee and redirect
+      // When an employee is clicked, store the employee in $rootScope
       $scope.selectEmployee = function(employee) {
         $rootScope.selectedEmployee = angular.copy(employee);
-        $location.path('/employeeDetail');
       };
   }]);
   
