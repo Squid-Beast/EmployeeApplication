@@ -54,8 +54,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateEmployee(@RequestBody EmployeeDetails employeeDetails) {
-        employeeService.updateEmployee(employeeDetails);
+    public ResponseEntity<?> updateEmployee(@RequestParam(name = "firstName") String firstName, @RequestBody EmployeeDetails employeeDetails) {
+        employeeService.updateEmployee(firstName, employeeDetails);
         return ResponseEntity.ok(new SuccessResponse("Employee updated successfully!"));
     }
 

@@ -45,13 +45,18 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
-    public EmployeeDetails updateEmployee(EmployeeDetails employeeDetails) {
-        Employee employee = employeeRepository.findByFirstName(employeeDetails.getFirstName()).get(0);
-        employee.setLastName(employeeDetails.getLastName());
-        employee.setJoiningDate(employeeDetails.getJoiningDate());
-        employee.setRole(employeeDetails.getRole());
-        employeeRepository.save(employee);
-        return employeeDetails;
+    public EmployeeDetails updateEmployee(String firstName, EmployeeDetails employeeDetails) {
+        List<Employee> employees = employeeRepository.findByFirstName(firstName);
+        if (!employees.isEmpty()) {
+            Employee employee = employees.get(0);
+            employee.setLastName(employeeDetails.getLastName());
+            employee.setJoiningDate(employeeDetails.getJoiningDate());
+            employee.setRole(employeeDetails.getRole());
+            employeeRepository.save(employee);
+            return employeeDetails;
+        } else {
+            throw new RuntimeException("Employee not found");
+        }
     }
 
     public void deleteEmployee(String firstName) {
