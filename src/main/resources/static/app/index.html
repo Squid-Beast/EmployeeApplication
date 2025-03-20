@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="employeeApp">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee Application</title>
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- AngularJS and ngRoute -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
-  <!-- Google Maps API (replace YOUR_API_KEY with your actual key) -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArvwEn2zKM0WRrzeMhgdCvY_v1YbHiWao&libraries=places"></script>
-  <!-- Application Scripts (order is important) -->
-  <script src="app.js"></script>
-  <script src="controllers/homeController.js"></script>
-  <script src="controllers/mainController.js"></script>
-  <script src="controllers/welcomeController.js"></script>
-  <script src="controllers/searchController.js"></script>
-  <script src="controllers/editEmployeeController.js"></script>
-  <script src="services/employeeService.js"></script>
-  <!-- Custom styles can be inline or linked -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Application</title>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- AngularJS and ngRoute -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+<!-- Google Maps API (replace YOUR_API_KEY with your actual key) -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArvwEn2zKM0WRrzeMhgdCvY_v1YbHiWao&libraries=places"></script>
+<!-- Application Scripts (order is important) -->
+<script src="app.js"></script>
+<script src="controllers/homeController.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="controllers/welcomeController.js"></script>
+<script src="controllers/searchController.js"></script>
+<script src="controllers/editEmployeeController.js"></script>
+<!-- NEW: Include AddressController.js -->
+<script src="controllers/addressController.js"></script>
+<script src="services/employeeService.js"></script>
+<!-- Custom styles can be inline or linked -->
 </head>
 <body>
-  <div class="container">
-    <div ng-view></div>
-  </div>
+<div class="container">
+  <div ng-view></div>
+</div>
 </body>
 </html>

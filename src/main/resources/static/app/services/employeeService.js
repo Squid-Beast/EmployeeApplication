@@ -18,6 +18,9 @@ app.factory('EmployeeService', ['$http', function($http) {
         },
         deleteEmployee: function(firstName) {
             return $http.delete('/delete?firstName=' + firstName);
+        },
+        addAddress: function(address) {
+            return $http.post('/addAddress', address);
         }
     };
 }]);
