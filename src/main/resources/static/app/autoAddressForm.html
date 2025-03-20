@@ -1,0 +1,85 @@
+<div class="address-form-container">
+    <!-- Back to Home Button -->
+    <a href="#!/" class="back-home">
+      <i class="material-icons">home</i> Home
+    </a>
+    <h2>Address Autocomplete Form</h2>
+    <form>
+      <label for="autocomplete">Enter Address:</label>
+      <!-- Use our custom directive here -->
+      <input id="autocomplete" type="text" placeholder="Start typing an address..." google-places-autocomplete />
+  
+      <br /><br />
+  
+      <label for="street">Street:</label>
+      <input id="street" type="text" />
+  
+      <br /><br />
+  
+      <label for="city">City:</label>
+      <input id="city" type="text" />
+  
+      <br /><br />
+  
+      <label for="state">State:</label>
+      <input id="state" type="text" />
+  
+      <br /><br />
+  
+      <label for="zip">ZIP Code:</label>
+      <input id="zip" type="text" />
+  
+      <br /><br />
+  
+      <label for="country">Country:</label>
+      <input id="country" type="text" />
+    </form>
+  </div>
+  
+  <style>
+    .address-form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .address-form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+    .address-form-container form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .address-form-container form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .back-home {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .back-home:hover {
+      background: #0056b3;
+    }
+  </style>
+  
